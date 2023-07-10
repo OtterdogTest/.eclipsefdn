@@ -113,6 +113,9 @@ orgs.newOrg('OtterdogTest') {
       ],
       branch_protection_rules: [
         orgs.newBranchProtectionRule('main') {
+          bypass_pull_request_allowances+: [
+            "@netomi"
+          ],
           bypass_force_push_allowances+: [
             "@netomi"
           ],
