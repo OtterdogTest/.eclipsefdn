@@ -1,8 +1,8 @@
-site_name: Otterdog configuration @ {{ org }}
-site_description: Otterdog configuration @ {{ org }}
+site_name: Otterdog configuration @ OtterdogTest
+site_description: Otterdog configuration @ OtterdogTest
 strict: false
 
-site_url: https://{{ org }}.github.io/.eclipsefdn/
+site_url: https://OtterdogTest.github.io/.eclipsefdn/
 
 docs_dir: ./docs
 site_dir: ./_site
