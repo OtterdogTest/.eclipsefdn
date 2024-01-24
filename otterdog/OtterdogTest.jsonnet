@@ -2,9 +2,8 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    billing_email: "thomas.neidhart@eclipse-foundation.org",
     default_repository_permission: "none",
-    description: "Some real description.    ",
+    description: "Some real description.",
     members_can_change_project_visibility: false,
     packages_containers_internal: false,
     packages_containers_public: false,
