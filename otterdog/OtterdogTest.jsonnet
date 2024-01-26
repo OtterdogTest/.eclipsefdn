@@ -2,11 +2,11 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    default_repository_permission: "none",
     description: "Some real description.",
     members_can_change_project_visibility: false,
     packages_containers_internal: false,
     packages_containers_public: false,
+    plan: "free",
     two_factor_requirement: false,
   },
   webhooks+: [
@@ -19,10 +19,6 @@ orgs.newOrg('OtterdogTest') {
   ],
   secrets+: [
     orgs.newOrgSecret('TEST_SECRET') {
-      selected_repositories+: [
-        "test-repo",
-        "test-repo2"
-      ],
       value: "test-secret",
       visibility: "selected",
     },
@@ -30,12 +26,18 @@ orgs.newOrg('OtterdogTest') {
   _repositories+:: [
     orgs.extendRepo('.eclipsefdn') {
       description: "Repository to host configurations related to the Eclipse Foundation..",
+      workflows+: {
+        allowed_actions: "local_only",
+      },
     },
     orgs.newRepo('.github') {
       allow_merge_commit: true,
       allow_update_branch: false,
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
+      workflows+: {
+        allowed_actions: "local_only",
+      },
     },
     orgs.newRepo('OtterdogTest.github.io') {
       allow_merge_commit: true,
@@ -43,6 +45,9 @@ orgs.newOrg('OtterdogTest') {
       gh_pages_build_type: "legacy",
       gh_pages_source_branch: "main",
       gh_pages_source_path: "/",
+      workflows+: {
+        allowed_actions: "local_only",
+      },
       branch_protection_rules: [
         orgs.newBranchProtectionRule('main') {
           required_approving_review_count: null,
@@ -92,6 +97,9 @@ orgs.newOrg('OtterdogTest') {
       allow_update_branch: false,
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
+      workflows+: {
+        allowed_actions: "local_only",
+      },
     },
     orgs.newRepo('test-repo') {
       allow_merge_commit: true,
@@ -104,14 +112,6 @@ orgs.newOrg('OtterdogTest') {
       has_discussions: true,
       has_projects: false,
       has_wiki: false,
-      webhooks: [
-        orgs.newRepoWebhook('https://www.eclipse.org') {
-          events+: [
-            "*"
-          ],
-          secret: "********",
-        },
-      ],
       secrets: [
         orgs.newRepoSecret('TEST_SECRET2') {
           value: "test-secret2",
@@ -144,6 +144,9 @@ orgs.newOrg('OtterdogTest') {
       delete_branch_on_merge: false,
       description: "Second test repo",
       has_discussions: true,
+      workflows+: {
+        allowed_actions: "local_only",
+      },
       environments: [
         orgs.newEnvironment('github-pages') {
           branch_policies+: [
@@ -158,11 +161,17 @@ orgs.newOrg('OtterdogTest') {
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Third test repo",
+      workflows+: {
+        allowed_actions: "local_only",
+      },
     },
     orgs.newRepo('test-repo4') {
       allow_merge_commit: true,
       delete_branch_on_merge: false,
       description: "Fourth test repo",
+      workflows+: {
+        allowed_actions: "local_only",
+      },
       branch_protection_rules: [
         orgs.newBranchProtectionRule('main'),
       ],
@@ -187,6 +196,9 @@ orgs.newOrg('OtterdogTest') {
         "jsonnet",
         "python"
       ],
+      workflows+: {
+        allowed_actions: "local_only",
+      },
       webhooks: [
         orgs.newRepoWebhook('https://www.example.org') {
           events+: [
@@ -226,14 +238,6 @@ orgs.newOrg('OtterdogTest') {
           deployment_branch_policy: "selected",
         },
       ],
-    },
-    orgs.newRepo('test-repo7') {
-      archived: true,
-      has_discussions: true,
-      template_repository: "OtterdogTest/eclipsefdn-template",
-    },
-    orgs.newRepo('test-repo8') {
-      has_discussions: true,
     },
   ],
 }
