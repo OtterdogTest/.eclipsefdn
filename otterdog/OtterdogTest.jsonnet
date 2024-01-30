@@ -12,7 +12,8 @@ orgs.newOrg('OtterdogTest') {
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
-        "push"
+        "push",
+        "fork",
       ],
       secret: "blabla",
     },
