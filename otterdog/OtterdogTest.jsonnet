@@ -13,7 +13,6 @@ orgs.newOrg('OtterdogTest') {
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
         "push",
-        "fork",
       ],
       secret: "blabla",
     },
