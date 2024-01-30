@@ -2,7 +2,7 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    description: "Some real description blalba.",
+    description: "Some real description.",
     members_can_change_project_visibility: false,
     packages_containers_internal: false,
     packages_containers_public: false,
@@ -12,7 +12,8 @@ orgs.newOrg('OtterdogTest') {
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
-        "push"
+        "push",
+        "fork",
       ],
       secret: "blabla",
     },
