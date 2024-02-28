@@ -115,7 +115,7 @@ orgs.newOrg('OtterdogTest') {
       has_wiki: false,
       secrets: [
         orgs.newRepoSecret('TEST_SECRET2') {
-          value: "test-secret2",
+          value: "test-secret22",
         },
       ],
       branch_protection_rules: [
