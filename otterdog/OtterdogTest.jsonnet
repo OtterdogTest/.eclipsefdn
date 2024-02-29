@@ -159,6 +159,7 @@ orgs.newOrg('OtterdogTest') {
     },
     orgs.newRepo('test-repo3') {
       allow_merge_commit: true,
+      archived: true,
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Third test repo",
