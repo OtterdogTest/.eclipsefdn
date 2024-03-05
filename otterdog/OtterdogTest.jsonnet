@@ -2,7 +2,7 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    description: "Some real description blabla dfsdfsdfsdf sdfsdf.",
+    description: "Some real description blabla dfsdfsdfsdf sdfsdf sdfsdf.",
     members_can_change_project_visibility: false,
     packages_containers_internal: false,
     packages_containers_public: false,
