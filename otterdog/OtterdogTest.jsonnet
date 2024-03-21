@@ -4,8 +4,8 @@ orgs.newOrg('OtterdogTest') {
   settings+: {
     description: "Some real description blabla dfsdfsdfsdf.",
     members_can_change_project_visibility: false,
-    packages_containers_internal: false
-    packages_containers_public: false,
+    packages_containers_internal: false,
+    packages_containers_public: true,
     plan: "free",
     two_factor_requirement: false,
   },
