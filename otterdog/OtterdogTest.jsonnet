@@ -252,5 +252,7 @@ orgs.newOrg('OtterdogTest') {
         },
       ],
     },
+    orgs.newRepo('test-repo6') {
+    }
   ],
 }
