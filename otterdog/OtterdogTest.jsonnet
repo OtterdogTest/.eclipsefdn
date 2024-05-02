@@ -3,7 +3,10 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    description: "Some real description blabla dfsdfsdfsdf sdfsdf  sdfsdf.",
+    blog: "https://eclipse.dev/packaging",
+    description: "Defines Eclipse IDE products for the main Eclipse download page.",
+    email: "epp-dev@eclipse.org",
+    name: "Eclipse Packaging Product",
     members_can_change_project_visibility: false,
     packages_containers_internal: false,
     packages_containers_public: false,
@@ -26,6 +29,12 @@ orgs.newOrg('OtterdogTest') {
     },
   ],
   _repositories+:: [
+    orgs.newRepo('.github') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      web_commit_signoff_required: false,
+    },
     orgs.extendRepo('.eclipsefdn') {
       description: "Repository to host configurations related to the Eclipse Foundation..",
       workflows+: {
