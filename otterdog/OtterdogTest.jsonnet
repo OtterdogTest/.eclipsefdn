@@ -3,10 +3,7 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    blog: "https://eclipse.dev/packaging",
-    description: "Defines Eclipse IDE products for the main Eclipse download page.",
-    email: "epp-dev@eclipse.org",
-    name: "Eclipse Packaging Product",
+    description: "blabla.",
     members_can_change_project_visibility: false,
     packages_containers_internal: false,
     packages_containers_public: false,
