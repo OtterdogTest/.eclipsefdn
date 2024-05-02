@@ -32,15 +32,6 @@ orgs.newOrg('OtterdogTest') {
         allowed_actions: "local_only",
       },
     },
-    orgs.newRepo('.github') {
-      allow_merge_commit: true,
-      allow_update_branch: false,
-      delete_branch_on_merge: false,
-      dependabot_security_updates_enabled: true,
-      workflows+: {
-        allowed_actions: "local_only",
-      },
-    },
     orgs.newRepo('OtterdogTest.github.io') {
       allow_merge_commit: true,
       delete_branch_on_merge: false,
