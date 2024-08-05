@@ -1,4 +1,4 @@
 name: Limit use of macos larger runners
-type: macos_large_runners1
+type: macos_large_runners12
 config:
   allowed: true
