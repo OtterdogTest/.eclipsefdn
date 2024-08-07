@@ -1,20 +1,16 @@
 local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
-
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    description: "blabla.",
-    members_can_change_project_visibility: false,
-    packages_containers_internal: false,
-    packages_containers_public: false,
+    description: "11111.",
     plan: "free",
     two_factor_requirement: false,
   },
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
-        "push",
         "fork",
+        "push"
       ],
       secret: "blabla",
     },
@@ -26,17 +22,16 @@ orgs.newOrg('OtterdogTest') {
     },
   ],
   _repositories+:: [
-    orgs.newRepo('.github') {
-      allow_merge_commit: true,
-      allow_update_branch: false,
-      delete_branch_on_merge: false,
-      web_commit_signoff_required: false,
-    },
     orgs.extendRepo('.eclipsefdn') {
       description: "Repository to host configurations related to the Eclipse Foundation..",
       workflows+: {
         allowed_actions: "local_only",
       },
+    },
+    orgs.newRepo('.github') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
     },
     orgs.newRepo('OtterdogTest.github.io') {
       allow_merge_commit: true,
@@ -70,12 +65,24 @@ orgs.newOrg('OtterdogTest') {
     },
     orgs.newRepo('eca-action') {
       allow_merge_commit: true,
+      code_scanning_default_query_suite: "extended",
+      code_scanning_default_setup_enabled: true,
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Eclipse Contributor Agreement Action",
       gh_pages_build_type: "legacy",
       gh_pages_source_branch: "main",
       gh_pages_source_path: "/",
+      private_vulnerability_reporting_enabled: true,
+      webhooks: [
+        orgs.newRepoWebhook('https://api.stacklok.com/api/v1/webhook/github/f6da3a8d-6e41-49c8-888d-96e7debb6d16') {
+          content_type: "json",
+          events+: [
+            "*"
+          ],
+          secret: "********",
+        },
+      ],
       environments: [
         orgs.newEnvironment('github-pages'),
       ],
@@ -114,7 +121,6 @@ orgs.newOrg('OtterdogTest') {
       allow_update_branch: false,
       delete_branch_on_merge: false,
       description: "First test repo",
-      private_vulnerability_reporting_enabled: false,
       gh_pages_build_type: "legacy",
       gh_pages_source_branch: "main",
       gh_pages_source_path: "/",
@@ -166,11 +172,10 @@ orgs.newOrg('OtterdogTest') {
       ],
     },
     orgs.newRepo('test-repo3') {
-      allow_merge_commit: true,
       archived: true,
-      delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Third test repo",
+      secret_scanning_push_protection: "disabled",
       workflows+: {
         allowed_actions: "local_only",
       },
@@ -196,6 +201,10 @@ orgs.newOrg('OtterdogTest') {
     },
     orgs.newRepo('test-repo5') {
       allow_merge_commit: true,
+      code_scanning_default_languages+: [
+        "python"
+      ],
+      code_scanning_default_setup_enabled: true,
       delete_branch_on_merge: false,
       description: "Fifth test repo",
       gh_pages_build_type: "legacy",
@@ -206,9 +215,6 @@ orgs.newOrg('OtterdogTest') {
         "jsonnet",
         "python"
       ],
-      workflows+: {
-        allowed_actions: "local_only",
-      },
       webhooks: [
         orgs.newRepoWebhook('https://www.example.org') {
           events+: [
@@ -218,18 +224,11 @@ orgs.newOrg('OtterdogTest') {
       ],
       branch_protection_rules: [
         orgs.newBranchProtectionRule('main') {
-          blocks_creations: true,
-          bypass_force_push_allowances+: [
-            "@netomi"
-          ],
-          push_restrictions+: [
-            "@OtterdogTest/committers"
-          ],
-          required_status_checks+: [
-            "Run CI"
-          ],
-          requires_deployments: true,
-          restricts_pushes: true,
+          is_admin_enforced: true,
+          required_approving_review_count: null,
+          requires_pull_request: false,
+          requires_status_checks: false,
+          requires_strict_status_checks: true,
         },
         orgs.newBranchProtectionRule('develop') {
           required_approving_review_count: 1,
@@ -250,6 +249,6 @@ orgs.newOrg('OtterdogTest') {
       ],
     },
     orgs.newRepo('test-repo6') {
-    }
+    },
   ],
 }
