@@ -253,7 +253,7 @@ orgs.newOrg('OtterdogTest') {
     orgs.newRepo('test-repo7') {
     },
     orgs.newRepo('test-repo8') {
-      forked_repository: 'http://github.com/netomi/test',
+      forked_repository: 'netomi/test',
     },
   ],
 }
