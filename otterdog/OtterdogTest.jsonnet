@@ -252,5 +252,8 @@ orgs.newOrg('OtterdogTest') {
     },
     orgs.newRepo('test-repo7') {
     },
-],
+    orgs.newRepo('test-repo8') {
+      forked_repository: 'netomi/test',
+    },
+  ],
 }
