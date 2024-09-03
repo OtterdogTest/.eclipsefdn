@@ -5,6 +5,23 @@ orgs.newOrg('OtterdogTest') {
     description: "blabla.",
     plan: "free",
     two_factor_requirement: false,
+    custom_properties+: [
+      orgs.newCustomProperty('bool') {
+        default_value: "true",
+        description: "blabla",
+        required: true,
+        value_type: "true_false",
+      },
+      orgs.newCustomProperty('label'),
+      orgs.newCustomProperty('other') {
+        allowed_values+: [
+          "A",
+          "B",
+          "C"
+        ],
+        value_type: "multi_select",
+      },
+    ],
   },
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
@@ -12,17 +29,21 @@ orgs.newOrg('OtterdogTest') {
         "fork",
         "push"
       ],
-      secret: "blabla",
+      secret: "********",
     },
   ],
   secrets+: [
     orgs.newOrgSecret('TEST_SECRET') {
-      value: "test-secret",
+      value: "********",
       visibility: "selected",
     },
   ],
   _repositories+:: [
     orgs.extendRepo('.eclipsefdn') {
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       description: "Repository to host configurations related to the Eclipse Foundation..",
       workflows+: {
         allowed_actions: "local_only",
@@ -31,10 +52,18 @@ orgs.newOrg('OtterdogTest') {
     orgs.newRepo('.github') {
       allow_merge_commit: true,
       allow_update_branch: false,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
     },
     orgs.newRepo('OtterdogTest.github.io') {
       allow_merge_commit: true,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       gh_pages_build_type: "legacy",
       gh_pages_source_branch: "main",
@@ -67,6 +96,10 @@ orgs.newOrg('OtterdogTest') {
       allow_merge_commit: true,
       code_scanning_default_query_suite: "extended",
       code_scanning_default_setup_enabled: true,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Eclipse Contributor Agreement Action",
@@ -90,6 +123,10 @@ orgs.newOrg('OtterdogTest') {
     orgs.newRepo('macos-notarization-service') {
       allow_merge_commit: true,
       allow_update_branch: false,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       dependabot_alerts_enabled: false,
       description: "REST Service to notarize macOS application bundles and DMG",
@@ -101,6 +138,10 @@ orgs.newOrg('OtterdogTest') {
     orgs.newRepo('otterdog-configs') {
       allow_merge_commit: true,
       allow_update_branch: false,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       workflows+: {
@@ -119,6 +160,10 @@ orgs.newOrg('OtterdogTest') {
     orgs.newRepo('test-repo') {
       allow_merge_commit: true,
       allow_update_branch: false,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       description: "First test repo",
       gh_pages_build_type: "legacy",
@@ -129,7 +174,7 @@ orgs.newOrg('OtterdogTest') {
       has_wiki: false,
       secrets: [
         orgs.newRepoSecret('TEST_SECRET2') {
-          value: "test-secret22",
+          value: "********",
         },
       ],
       branch_protection_rules: [
@@ -156,6 +201,10 @@ orgs.newOrg('OtterdogTest') {
     },
     orgs.newRepo('test-repo2') {
       allow_merge_commit: true,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       description: "Second test repo",
       has_discussions: true,
@@ -172,7 +221,13 @@ orgs.newOrg('OtterdogTest') {
       ],
     },
     orgs.newRepo('test-repo3') {
+      allow_merge_commit: true,
       archived: true,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
+      delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Third test repo",
       secret_scanning_push_protection: "disabled",
@@ -182,6 +237,10 @@ orgs.newOrg('OtterdogTest') {
     },
     orgs.newRepo('test-repo4') {
       allow_merge_commit: true,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       description: "Fourth test repo",
       workflows+: {
@@ -205,6 +264,10 @@ orgs.newOrg('OtterdogTest') {
         "python"
       ],
       code_scanning_default_setup_enabled: true,
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
       delete_branch_on_merge: false,
       description: "Fifth test repo",
       gh_pages_build_type: "legacy",
@@ -249,11 +312,17 @@ orgs.newOrg('OtterdogTest') {
       ],
     },
     orgs.newRepo('test-repo6') {
+      custom_properties+: {
+        bool: "true",
+        other: ["A", "B"]
+      },
     },
     orgs.newRepo('test-repo7') {
-    },
-    orgs.newRepo('test-repo8') {
-      forked_repository: 'netomi/test',
+      custom_properties+: {
+        bool: "true",
+        label: "test",
+        other: ["A", "B"]
+      },
     },
   ],
 }
