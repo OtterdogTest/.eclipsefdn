@@ -103,7 +103,7 @@ orgs.newOrg('OtterdogTest') {
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Eclipse Contributor Agreement Action",
-      gh_pages_build_type: "legacy",
+      gh_pages_build_type: "disabled",
       gh_pages_source_branch: "main",
       gh_pages_source_path: "/",
       private_vulnerability_reporting_enabled: true,
@@ -116,13 +116,16 @@ orgs.newOrg('OtterdogTest') {
           secret: "********",
         },
       ],
-      environments: [
-        orgs.newEnvironment('github-pages'),
-      ],
     },
     orgs.newRepo('macos-notarization-service') {
       allow_merge_commit: true,
       allow_update_branch: false,
+      code_scanning_default_languages+: [
+        "java-kotlin"
+      ],
+      code_scanning_default_setup_enabled: true,
+      code_scanning_default_query_suite: "extended",
+
       custom_properties+: {
         bool: "true",
         other: ["A", "B"]
@@ -134,6 +137,11 @@ orgs.newOrg('OtterdogTest') {
       homepage: "",
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
+      secrets: [
+        orgs.newRepoSecret('GITLAB_API_TOKEN') {
+          value: "********",
+        },
+      ],
     },
     orgs.newRepo('otterdog-configs') {
       allow_merge_commit: true,
@@ -324,5 +332,17 @@ orgs.newOrg('OtterdogTest') {
         other: ["A", "B"]
       },
     },
+    orgs.newRepo('test-repo9') {
+      auto_init: false,
+      gh_pages_build_type: "disabled",
+      rulesets: [
+        orgs.newRepoRuleset('main') {
+          required_status_checks+: {
+            do_not_enforce_on_create: true,
+            strict: true,
+          }
+        }
+      ],
+    }
   ],
 }
