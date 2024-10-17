@@ -2,4 +2,4 @@ name: Pin workflows
 type: pin_workflow
 config:
   repo_selector:
-    name_pattern: macos-notarization-service
+    name_pattern: .*
