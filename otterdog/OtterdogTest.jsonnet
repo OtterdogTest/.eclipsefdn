@@ -2,7 +2,7 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    description: "blabla.",
+    description: "blablasdsdfdffsdsdfsfdf.",
     plan: "free",
     two_factor_requirement: false,
     custom_properties+: [
