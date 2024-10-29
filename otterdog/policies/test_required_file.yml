@@ -1,4 +1,4 @@
-name: Require dependabot-auto-merge.yml blabla
+name: Require dependabot-auto-merge.yml
 type: required_file
 config:
   files:
