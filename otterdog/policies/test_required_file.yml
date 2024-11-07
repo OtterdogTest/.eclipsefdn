@@ -9,7 +9,7 @@ config:
           - test-repo5
           - test-repo7
       content: |
-        # This is a templated file from https://github.com/adoptium/.eclipsefdn/tree/main/otterdog/policies/require_dependabot_auto_merge.yml
+        # This is a templated file from https://github.com/adoptium/.eclipsefdn/tree/main/otterdog/policies/require_dependabot_auto_merge.yml sdfsd
         name: Dependabot auto-merge
         on: pull_request_target
   
