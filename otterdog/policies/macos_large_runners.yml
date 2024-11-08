@@ -1,4 +1,6 @@
 name: Limit use of macos larger runners
+description: |
+  This policy restricts the use of macos large runners in GitHub actions.
 type: macos_large_runners
 config:
   allowed: true
