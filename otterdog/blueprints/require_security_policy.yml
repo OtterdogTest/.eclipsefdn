@@ -1,3 +1,4 @@
+id: require-default-security-policy
 name: Requires SECURITY.md file
 type: required_file
 config:
