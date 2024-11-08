@@ -1,5 +1,7 @@
 id: require-dependabot-auto-merge-workflow
 name: Require dependabot-auto-merge.yml
+description: |
+  Every repo should have a dependabot-auto-merge.yml file to auto merge PRs created by dependabot.
 type: required_file
 config:
   files:
