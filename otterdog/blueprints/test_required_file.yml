@@ -4,13 +4,13 @@ description: |-
   Every repo should have a dependabot-auto-merge.yml file to auto merge PRs created by dependabot.
 type: required_file
 config:
+  repo_selector:
+    name_pattern:
+      - test-repo
+      - test-repo5
+      - test-repo7
   files:
     - path: .github/workflows/dependabot-auto-merge.yml
-      repo_selector:
-        name_pattern:
-          - test-repo
-          - test-repo5
-          - test-repo7
       content: |
         # This is a templated file from https://github.com/adoptium/.eclipsefdn/tree/main/otterdog/policies/require_dependabot_auto_merge.yml sdfsd
         name: Dependabot auto-merge
