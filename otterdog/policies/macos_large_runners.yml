@@ -1,6 +1,8 @@
 name: Limit use of macos larger runners
-description: |
-  This policy restricts the use of macos large runners in GitHub actions.
+description: |-
+  This policy restricts the use of macOS large runners for workflows using GitHub actions.
+  If disallowed for an organization, any workflow job that uses such a runner is cancelled.
+  In case your project wants / needs to use such runners, please open a ticket at the [HelpDesk](https://gitlab.eclipse.org/eclipsefdn/helpdesk/-/issues/new).
 type: macos_large_runners
 config:
   allowed: true
