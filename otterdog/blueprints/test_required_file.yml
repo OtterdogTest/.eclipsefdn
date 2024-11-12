@@ -7,6 +7,7 @@ config:
   repo_selector:
     name_pattern:
       - test-repo
+      - test-repo3
       - test-repo5
       - test-repo7
   files:
