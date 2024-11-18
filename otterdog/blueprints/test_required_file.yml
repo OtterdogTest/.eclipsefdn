@@ -13,7 +13,7 @@ config:
   files:
     - path: .github/workflows/dependabot-auto-merge.yml
       content: |
-        # This is a templated file from {{blueprint_url}} for {{repo_name}}, homepage: {{repo.homepage}}
+        # This is a templated file from {{blueprint_url}} for {{repo_name}}, desc: '{{repo.description}}'
         name: Dependabot auto-merge
         on: pull_request_target
   
