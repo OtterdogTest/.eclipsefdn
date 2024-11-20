@@ -3,13 +3,14 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 orgs.newOrg('OtterdogTest') {
   settings+: {
     description: "blabla.",
-    plan: "free",
+    has_discussions: true,
+    discussion_source_repository: "OtterdogTest/test-repo",
     two_factor_requirement: false,
     custom_properties+: [
       orgs.newCustomProperty('bool') {
-        default_value: "true",
+        //default_value: "true",
         description: "blabla",
-        required: true,
+        required: false,
         value_type: "true_false",
       },
       orgs.newCustomProperty('label'),
@@ -22,7 +23,22 @@ orgs.newOrg('OtterdogTest') {
         value_type: "multi_select",
       },
     ],
+    workflows+: {
+      actions_can_approve_pull_request_reviews: true,
+    }
   },
+  rulesets+: [
+    orgs.newOrgRuleset('prevent-force-pushes') {
+      include_repo_names: [
+        "~ALL"
+      ],
+      include_refs: [
+        "~DEFAULT_BRANCH"
+      ],
+      required_pull_request: null,
+      required_status_checks: null,
+    },
+  ],
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
@@ -108,12 +124,11 @@ orgs.newOrg('OtterdogTest') {
       gh_pages_source_path: "/",
       private_vulnerability_reporting_enabled: true,
       webhooks: [
-        orgs.newRepoWebhook('https://api.stacklok.com/api/v1/webhook/github/f6da3a8d-6e41-49c8-888d-96e7debb6d16') {
-          content_type: "json",
+        orgs.newRepoWebhook('https://api.stacklok.com/api/v1/webhook/github/*') {
+          content_type: "form",
           events+: [
             "*"
           ],
-          secret: "********",
         },
       ],
     },
@@ -244,6 +259,7 @@ orgs.newOrg('OtterdogTest') {
       },
     },
     orgs.newRepo('test-repo4') {
+      local thisRepo = self,
       allow_merge_commit: true,
       custom_properties+: {
         bool: "true",
@@ -255,7 +271,7 @@ orgs.newOrg('OtterdogTest') {
         allowed_actions: "local_only",
       },
       branch_protection_rules: [
-        orgs.newBranchProtectionRule('main'),
+        orgs.newBranchProtectionRule(thisRepo.default_branch),
       ],
       environments: [
         orgs.newEnvironment('github-pages') {
@@ -332,17 +348,7 @@ orgs.newOrg('OtterdogTest') {
         other: ["A", "B"]
       },
     },
-    orgs.newRepo('test-repo9') {
-      auto_init: false,
-      gh_pages_build_type: "disabled",
-      rulesets: [
-        orgs.newRepoRuleset('main') {
-          required_status_checks+: {
-            do_not_enforce_on_create: true,
-            strict: true,
-          }
-        }
-      ],
-    }
+    orgs.newRepo('test-repo8') {
+    },
   ],
 }
