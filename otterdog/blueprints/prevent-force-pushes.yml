@@ -1,0 +1,23 @@
+id: prevent-force-pushes
+name: Prevent force-pushes on the default branch of any repository
+description: |-
+  This blueprint will create a PR that will amend the configuration in the `.eclipsefdn` repo to disallow force-pushes for the default branch of any repo.
+  If you would like to exclude some repos and still allow force pushes for them, add a comment to the PR with the repo names.
+type: append_configuration
+config:
+  condition: $count($.rulesets[allows_force_pushes = false and "~DEFAULT_BRANCH" in include_refs and "~ALL" in include_repo_names and target = "branch"]) > 0
+  content: |
+    {
+      rulesets+: [
+        orgs.newOrgRuleset('{{blueprint_id}}') {
+          include_repo_names: [
+            "~ALL"
+          ],
+          include_refs: [
+            "~DEFAULT_BRANCH"
+          ],
+          required_pull_request: null,
+          required_status_checks: null,
+        },
+      ],
+    }
