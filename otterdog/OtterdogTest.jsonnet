@@ -343,6 +343,7 @@ orgs.newOrg('OtterdogTest') {
  + {
   rulesets+: [
     orgs.newOrgRuleset('prevent-force-pushes') {
+      allows_creations: true,
       include_repo_names: [
         "~ALL"
       ],
