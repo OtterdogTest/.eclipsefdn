@@ -340,6 +340,7 @@ orgs.newOrg('OtterdogTest') {
     },
   ],
 } + {
+  # snippet added due to 'https://github.com/OtterdogTest/.eclipsefdn/blob/main/otterdog/blueprints/prevent-force-pushes.yml'
   rulesets+: [
     orgs.newOrgRuleset('prevent-force-pushes') {
       allows_creations: true,
