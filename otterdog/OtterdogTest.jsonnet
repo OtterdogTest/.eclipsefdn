@@ -339,8 +339,7 @@ orgs.newOrg('OtterdogTest') {
     orgs.newRepo('test-repo8') {
     },
   ],
-}
- + {
+} + {
   rulesets+: [
     orgs.newOrgRuleset('prevent-force-pushes') {
       allows_creations: true,
