@@ -6,8 +6,16 @@ description: |-
   If you would like to exclude some repos and still allow force pushes for them, add a comment to the PR with the repo names.
 type: append_configuration
 config:
-  condition: $count($.rulesets[allows_force_pushes = false and "~DEFAULT_BRANCH" in include_refs and "~ALL" in include_repo_names and target = "branch"]) > 0
-  content: |
+  condition: >-
+    $count(
+      $.rulesets[
+        allows_force_pushes = false and
+        "~DEFAULT_BRANCH" in include_refs and
+        "~ALL" in include_repo_names and
+        target = "branch"
+      ]
+    ) = 0
+  content: |-
     {
       # snippet added due to '{{blueprint_url}}'
       rulesets+: [
