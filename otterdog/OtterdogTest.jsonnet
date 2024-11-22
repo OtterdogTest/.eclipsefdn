@@ -340,3 +340,17 @@ orgs.newOrg('OtterdogTest') {
     },
   ],
 }
+ + {
+  rulesets+: [
+    orgs.newOrgRuleset('prevent-force-pushes') {
+      include_repo_names: [
+        "~ALL"
+      ],
+      include_refs: [
+        "~DEFAULT_BRANCH"
+      ],
+      required_pull_request: null,
+      required_status_checks: null,
+    },
+  ],
+}
