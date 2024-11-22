@@ -27,18 +27,6 @@ orgs.newOrg('OtterdogTest') {
       actions_can_approve_pull_request_reviews: true,
     }
   },
-  rulesets+: [
-    orgs.newOrgRuleset('prevent-force-pushes') {
-      include_repo_names: [
-        "~ALL"
-      ],
-      include_refs: [
-        "~DEFAULT_BRANCH"
-      ],
-      required_pull_request: null,
-      required_status_checks: null,
-    },
-  ],
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
