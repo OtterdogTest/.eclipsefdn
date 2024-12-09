@@ -25,5 +25,5 @@ config:
               contents: write
               pull-requests: write
             uses: adoptium/.github/.github/workflows/dependabot-auto-merge.yml@main
-      # ensure that changes to the template are propagated
+      # ensure that changes to the template are propagated, some more data
       strict: true
