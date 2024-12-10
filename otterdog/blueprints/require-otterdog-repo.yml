@@ -1,7 +1,9 @@
 id: require-otterdog-repo
 name: blabla
 description: |-
-  sdfsdfssdsdf.
+  This will add a `.github` repository for the project. Such a repository is useful to define some defaults for all repositories
+  within a GitHub organization or share common reusable workflows. There is no restriction wrt settings to this repository, this blueprint
+  will only check for the existence of such a repository and it can be modified as usual.
 type: append_configuration
 config:
   condition: >-
