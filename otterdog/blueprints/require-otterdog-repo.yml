@@ -1,0 +1,19 @@
+id: require-otterdog-repo
+name: blabla
+description: |-
+  sdfsdfs.
+type: append_configuration
+config:
+  condition: >-
+    $count(
+      $.repositories[name = ".otterdog"]
+    ) = 0
+  content: |-
+    {
+      # snippet added due to '{{blueprint_url}}'
+      _repositories+:: [
+        orgs.newRepo('.otterdog')
+      ],
+    }
+  reviewers:
+    - {{project_name}}-project-leads
