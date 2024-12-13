@@ -2,7 +2,7 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest') {
   settings+: {
-    description: "sfdfdsfsdfsdfdf.",
+    description: "sfdfdsfsdfsdfdfdfdfdf.",
     has_discussions: true,
     discussion_source_repository: "OtterdogTest/test-repo",
     custom_properties+: [
