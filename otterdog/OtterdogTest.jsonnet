@@ -337,5 +337,6 @@ orgs.newOrg('OtterdogTest') {
     },
     orgs.newRepo('test-repo8') {
     },
+    orgs.newRepo('test-repo9') {},
   ],
 }
