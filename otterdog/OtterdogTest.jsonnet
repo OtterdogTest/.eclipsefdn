@@ -5,7 +5,6 @@ orgs.newOrg('OtterdogTest') {
     description: "sfdf.",
     has_discussions: true,
     discussion_source_repository: "OtterdogTest/test-repo",
-    two_factor_requirement: false,
     custom_properties+: [
       orgs.newCustomProperty('bool') {
         //default_value: "true",
