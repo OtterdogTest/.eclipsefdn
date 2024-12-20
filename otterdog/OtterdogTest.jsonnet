@@ -348,4 +348,19 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       },
     },
   ],
+} + {
+  # snippet added due to 'https://github.com/OtterdogTest/.eclipsefdn/blob/main/otterdog/blueprints/prevent-force-pushes.yml'
+  rulesets+: [
+    orgs.newOrgRuleset('prevent-force-pushes') {
+      allows_creations: true,
+      include_repo_names: [
+        "~ALL"
+      ],
+      include_refs: [
+        "~DEFAULT_BRANCH"
+      ],
+      required_pull_request: null,
+      required_status_checks: null,
+    },
+  ],
 }
