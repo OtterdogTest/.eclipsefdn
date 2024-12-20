@@ -1,10 +1,13 @@
 local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
-orgs.newOrg('OtterdogTest') {
+orgs.newOrg('OtterdogTest', 'OtterdogTest') {
   settings+: {
-    description: "sdsdfsdff.",
+    description: "This is a test organization.",
     has_discussions: true,
     discussion_source_repository: "OtterdogTest/test-repo",
+    security_managers: [
+      "eclipsefdn-security",
+    ],
     custom_properties+: [
       orgs.newCustomProperty('bool') {
         //default_value: "true",
@@ -26,6 +29,15 @@ orgs.newOrg('OtterdogTest') {
       actions_can_approve_pull_request_reviews: true,
     }
   },
+  roles+: [
+    orgs.newOrgRole('security_team') {
+      description: "The security team role.",
+      permissions: [
+        "delete_alerts_code_scanning",
+      ],
+      base_role: "read",
+    }
+  ],
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
@@ -335,8 +347,5 @@ orgs.newOrg('OtterdogTest') {
         other: ["A", "B"]
       },
     },
-    orgs.newRepo('test-repo8') {
-    },
-    orgs.newRepo('test-repo9') {},
   ],
 }
