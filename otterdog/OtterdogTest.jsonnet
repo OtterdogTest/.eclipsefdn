@@ -29,15 +29,6 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       actions_can_approve_pull_request_reviews: true,
     }
   },
-  roles+: [
-    orgs.newOrgRole('security_team') {
-      description: "The security team role.",
-      permissions: [
-        "delete_alerts_code_scanning",
-      ],
-      base_role: "read",
-    }
-  ],
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
