@@ -3,4 +3,4 @@ description: |-
   This policy uploads any generated sbom files to sbom.eclipse.org.
 type: dependency_track_upload
 config:
-  workflow_filter: "store-sbom-data.yml"
+  workflow_filter: ".*/store-sbom-data.yml.*"
