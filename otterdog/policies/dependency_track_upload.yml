@@ -1,6 +1,8 @@
-name: Upload sbom files to sbom.eclipse.org
+name: Upload sbom data to sbom.eclipse.org
 description: |-
-  This policy uploads any generated sbom files to sbom.eclipse.org.
+  This policy uploads generated sbom data to sbom.eclipse.org.
 type: dependency_track_upload
 config:
+  artifact_name: "eclipse-sbom-data"
+  base_url: "https://sbom.eclipse.org"
   workflow_filter: ".*/store-sbom-data.yml.*"
