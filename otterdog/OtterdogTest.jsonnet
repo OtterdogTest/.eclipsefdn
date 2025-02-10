@@ -3,16 +3,11 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 orgs.newOrg('OtterdogTest', 'OtterdogTest') {
   settings+: {
     description: "This is a test organization.",
-    has_discussions: true,
     discussion_source_repository: "OtterdogTest/test-repo",
-    security_managers: [
-      "eclipsefdn-security",
-    ],
+    has_discussions: true,
     custom_properties+: [
       orgs.newCustomProperty('bool') {
-        //default_value: "true",
-        description: "blabla",
-        required: false,
+        description: "The Eclipse project this repository belongs to.",
         value_type: "true_false",
       },
       orgs.newCustomProperty('label'),
@@ -25,10 +20,28 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
         value_type: "multi_select",
       },
     ],
-    workflows+: {
-      actions_can_approve_pull_request_reviews: true,
-    }
   },
+  roles+: [
+    orgs.newOrgRole('security_team') {
+      base_role: "read",
+      description: "The security team role.",
+      permissions+: [
+        "delete_alerts_code_scanning"
+      ],
+    },
+  ],
+  teams+: [
+    orgs.newTeam('committers') {
+      description: "These are all committers.",
+      members+: [
+        "iliescuioana",
+        "mbarbero",
+        "netomi"
+      ],
+      notifications: false,
+      privacy: "secret",
+    },
+  ],
   webhooks+: [
     orgs.newOrgWebhook('https://www.example.org') {
       events+: [
@@ -109,13 +122,9 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       delete_branch_on_merge: false,
       dependabot_security_updates_enabled: true,
       description: "Eclipse Contributor Agreement Action",
-      gh_pages_build_type: "disabled",
-      gh_pages_source_branch: "main",
-      gh_pages_source_path: "/",
       private_vulnerability_reporting_enabled: true,
       webhooks: [
         orgs.newRepoWebhook('https://api.stacklok.com/api/v1/webhook/github/*') {
-          content_type: "form",
           events+: [
             "*"
           ],
@@ -128,9 +137,8 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       code_scanning_default_languages+: [
         "java-kotlin"
       ],
-      code_scanning_default_setup_enabled: true,
       code_scanning_default_query_suite: "extended",
-
+      code_scanning_default_setup_enabled: true,
       custom_properties+: {
         bool: "true",
         other: ["A", "B"]
@@ -147,6 +155,17 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
           value: "********",
         },
       ],
+    },
+    orgs.newRepo('otterdog') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "OtterDog is a tool to manage GitHub organizations at scale using a configuration as code approach. It is actively used by the Eclipse Foundation to manage its numerous projects hosted on GitHub.",
+      has_issues: false,
+      homepage: "https://otterdog.readthedocs.org",
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
     },
     orgs.newRepo('otterdog-configs') {
       allow_merge_commit: true,
@@ -169,6 +188,18 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
           secret: "********",
         },
       ],
+    },
+    orgs.newRepo('syson') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "SysON: web-based graphical modelers for SysMLv2. Please visit https://mbse-syson.org and contact Obeo https://www.obeosoft.com/en/contact for more details!",
+      has_issues: false,
+      has_wiki: false,
+      homepage: "https://mbse-syson.org",
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
     },
     orgs.newRepo('test-repo') {
       allow_merge_commit: true,
@@ -249,7 +280,6 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       },
     },
     orgs.newRepo('test-repo4') {
-      local thisRepo = self,
       allow_merge_commit: true,
       custom_properties+: {
         bool: "true",
@@ -261,7 +291,7 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
         allowed_actions: "local_only",
       },
       branch_protection_rules: [
-        orgs.newBranchProtectionRule(thisRepo.default_branch),
+        orgs.newBranchProtectionRule('main'),
       ],
       environments: [
         orgs.newEnvironment('github-pages') {
@@ -337,6 +367,26 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
         label: "test",
         other: ["A", "B"]
       },
+      rulesets: [
+        orgs.newRepoRuleset('main') {
+          bypass_actors+: [
+            "@OtterdogTest/eclipsefdn-security"
+          ],
+          include_refs+: [
+            "refs/heads/main"
+          ],
+          requires_linear_history: true,
+          required_pull_request+: {
+            dismisses_stale_reviews: true,
+            required_approving_review_count: 1,
+            requires_last_push_approval: true,
+            requires_review_thread_resolution: true,
+          },
+          required_status_checks+: {
+            strict: true,
+          },
+        },
+      ],
     },
   ],
 } + {
