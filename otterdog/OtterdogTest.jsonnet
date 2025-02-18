@@ -189,6 +189,17 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
         },
       ],
     },
+    orgs.newRepo('kuksa-python-sdk') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "The Python SDK for Eclipse KUKSA",
+      has_issues: false,
+      has_wiki: false,
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+    },
     orgs.newRepo('syson') {
       allow_merge_commit: true,
       allow_update_branch: false,
