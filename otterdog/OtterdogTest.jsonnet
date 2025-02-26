@@ -2,7 +2,7 @@ local orgs = import 'vendor/otterdog-defaults/otterdog-defaults.libsonnet';
 
 orgs.newOrg('OtterdogTest', 'OtterdogTest') {
   settings+: {
-    description: "This is a test organization. xyz",
+    description: "This is a test organization.",
     discussion_source_repository: "OtterdogTest/test-repo",
     has_discussions: true,
     security_managers: [],
