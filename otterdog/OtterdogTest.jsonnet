@@ -5,6 +5,7 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
     description: "This is a test organization.",
     discussion_source_repository: "OtterdogTest/test-repo",
     has_discussions: true,
+    security_managers: [],
     custom_properties+: [
       orgs.newCustomProperty('bool') {
         description: "The Eclipse project this repository belongs to.",
@@ -67,6 +68,7 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       workflows+: {
         allowed_actions: "local_only",
       },
+      rulesets: [],
     },
     orgs.newRepo('.github') {
       allow_merge_commit: true,
