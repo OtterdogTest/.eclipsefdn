@@ -202,6 +202,17 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
     },
+    orgs.newRepo('arc') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "The Arc project utilizes the power of Kotlin DSL and Kotlin Scripting to define a language optimized for building LLM-powered solutions.",
+      has_issues: false,
+      has_wiki: false,
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+    },
     orgs.newRepo('jkube') {
       allow_merge_commit: true,
       allow_update_branch: false,
