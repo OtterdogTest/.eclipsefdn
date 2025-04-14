@@ -202,6 +202,17 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
     },
+    orgs.newRepo('vert.x') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "Vert.x is a tool-kit for building reactive applications on the JVM",
+      has_issues: false,
+      has_wiki: false,
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+    },
     orgs.newRepo('arc') {
       allow_merge_commit: true,
       allow_update_branch: false,
