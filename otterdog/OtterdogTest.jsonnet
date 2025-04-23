@@ -446,4 +446,9 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       ],
     },
   ],
+} + {
+  # snippet added due to 'https://github.com/OtterdogTest/.eclipsefdn/blob/main/otterdog/blueprints/require-otterdog-repo.yml'
+  _repositories+:: [
+    orgs.newRepo('.otterdog')
+  ],
 }
