@@ -213,6 +213,17 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
     },
+    orgs.newRepo('theia') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "Eclipse Theia is a cloud & desktop IDE framework implemented in TypeScript.",
+      has_issues: false,
+      has_wiki: false,
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+    },
     orgs.newRepo('arc') {
       allow_merge_commit: true,
       allow_update_branch: false,
