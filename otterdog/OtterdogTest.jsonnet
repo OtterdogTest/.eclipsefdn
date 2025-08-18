@@ -202,6 +202,17 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
     },
+    orgs.newRepo('milo') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "Eclipse Milo - an open source implementation of OPC UA (IEC 62541).",
+      has_issues: false,
+      has_wiki: false,
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+    },
     orgs.newRepo('vert.x') {
       allow_merge_commit: true,
       allow_update_branch: false,
