@@ -257,6 +257,17 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       secret_scanning: "disabled",
       secret_scanning_push_protection: "disabled",
     },
+    orgs.newRepo('eclipse-collections') {
+      allow_merge_commit: true,
+      allow_update_branch: false,
+      delete_branch_on_merge: false,
+      dependabot_alerts_enabled: false,
+      description: "Eclipse Collections is a collections framework for Java with optimized data structures and a rich, functional and fluent API.",
+      has_issues: false,
+      has_wiki: false,
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+    },
     orgs.newRepo('syson') {
       allow_merge_commit: true,
       allow_update_branch: false,
