@@ -440,6 +440,9 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
         other: ["A", "B"]
       },
     },
+    orgs.newRepo('test-repo8') {
+      description: "Simple repo creation",
+    },
     orgs.newRepo('test-repo7') {
       custom_properties+: {
         bool: "true",
