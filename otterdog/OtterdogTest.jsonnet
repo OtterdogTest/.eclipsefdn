@@ -470,5 +470,44 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
         },
       ],
     },
+    orgs.newRepo('test-private-repo') {
+      private: true,
+      allow_forking: false,
+      rulesets: [
+        orgs.newRepoRuleset('default-branch') {
+          include_refs+: [
+            "~DEFAULT_BRANCH",
+          ],
+          requires_linear_history: true,
+          required_code_quality: orgs.newCodeQuality() {
+            severity: "warnings",
+          },
+        },
+        orgs.newRepoRuleset('restrict-files') {
+          target: "push",
+          allows_creations: true,
+          allows_deletions: true,
+          allows_force_pushes: true,
+          required_pull_request: null,
+          required_status_checks: null,
+          restricted_file_paths+: [
+            ".env",
+            "secrets/**",
+          ],
+          restricted_file_paths_exceptions+: [
+            "secrets/README.md",
+          ],
+          max_file_path_length: 255,
+          restricted_file_extensions+: [
+            "*.exe",
+            "*.jar",
+          ],
+          max_file_size: 10,
+          max_file_size_exceptions+: [
+            "docs/assets/**",
+          ],
+        },
+      ],
+    },
   ],
 }
