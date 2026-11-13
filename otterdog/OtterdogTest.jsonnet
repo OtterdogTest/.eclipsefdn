@@ -368,6 +368,7 @@ orgs.newOrg('OtterdogTest', 'OtterdogTest') {
       description: "Fourth test repo",
       workflows+: {
         allowed_actions: "local_only",
+        sha_pinning_required: true,
       },
       branch_protection_rules: [
         orgs.newBranchProtectionRule('main'),
